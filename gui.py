@@ -131,8 +131,7 @@ class ChatApp:
                 'room_id': self.chat_target,
                 'message': message
             })
-            # self.display_message(self.username, message)
-            # self.input_field.delete(0, tk.END)
+        self.input_field.delete(0, tk.END)
 
     def display_message(self, sender, message):
         self.chat_display.config(state="normal")
