@@ -71,8 +71,7 @@ class ChatApp:
         for target in example_targets:
             self.room_listbox.insert(tk.END, target)
 
-        self.room_listbox.bind("<<ListboxSelect>>",
-                                      self.select_chat_target)
+        self.room_listbox.bind("<<ListboxSelect>>", self.select_chat_target)
 
         # Right frame for chat display and input
         right_frame = tk.Frame(main_frame)
@@ -93,7 +92,9 @@ class ChatApp:
         time_button.pack(side="left", padx=5)
 
         # Emoji selector button
-        emoji_button = tk.Button(button_row, text="😊", command=self.open_emoji_selector)
+        emoji_button = tk.Button(button_row,
+                                 text="😊",
+                                 command=self.open_emoji_selector)
         emoji_button.pack(side="left", padx=5)
 
         # Chat display area
@@ -178,8 +179,7 @@ class ChatApp:
             room_id = content
             self.room_listbox.selection_clear(0, tk.END)
             for idx in range(self.room_listbox.size()):
-                if self.room_listbox.get(idx).startswith(
-                        f"[{room_id}]"):
+                if self.room_listbox.get(idx).startswith(f"[{room_id}]"):
                     self.room_listbox.selection_set(idx)
                     self.select_chat_target(None, False)
         elif action == 'history':
@@ -237,8 +237,8 @@ class ChatApp:
 
         # List of emojis
         emojis = [
-            "😊", "😂", "❤️", "👍", "😢", "😡", "🎉", "😎", "🤔", "🙌", "💯", "🔥",
-            "✨", "🎶", "🥳", "🤩", "😇", "😴", "🤯", "🤗", "😬", "😱", "🤤", "😜"
+            "😊", "😂", "❤️", "👍", "😢", "😡", "🎉", "😎", "🤔", "🙌", "💯", "🔥", "✨",
+            "🎶", "🥳", "🤩", "😇", "😴", "🤯", "🤗", "😬", "😱", "🤤", "😜"
         ]
 
         # Function to insert selected emoji into the input field
@@ -249,22 +249,18 @@ class ChatApp:
         # Display emojis as buttons in a grid layout
         rows, cols = 4, 6  # Adjust rows and columns for layout
         for i, emoji in enumerate(emojis):
-            btn = tk.Button(emoji_window, text=emoji, command=lambda e=emoji: select_emoji(e))
+            btn = tk.Button(emoji_window,
+                            text=emoji,
+                            command=lambda e=emoji: select_emoji(e))
             btn.grid(row=i // cols, column=i % cols, padx=5, pady=5)
 
 
 def run_async_loop():
     import asyncio
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-
-    # 不要用 run_until_complete(worker())
-    # 因为单任务会“卡住”，无法取消和调度
     from client import communicate, send as client_send
-    loop.create_task(communicate(EH))
     global send
     send = client_send
-    loop.run_forever()  # 正确用法：让 loop 自己跑，不阻塞 Tk
+    asyncio.run(communicate(EH))
 
 
 if __name__ == "__main__":

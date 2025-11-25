@@ -190,8 +190,9 @@ async def main():
 
 
 if __name__ == "__main__":
-    with open(path / 'rooms.json', 'r', encoding='utf-8') as f:
-        rooms = json.load(f)
+    if (path / 'rooms.json').exists():
+        with open(path / 'rooms.json', 'r', encoding='utf-8') as f:
+            rooms = json.load(f)
     for i in rooms.keys():
         if int(i) > NUM:
             NUM = int(i)
