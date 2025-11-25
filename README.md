@@ -5,19 +5,19 @@
 ### Install Requirements
 
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ### Server
 
 ```bash
-python server.py
+python3 server.py
 ```
 
 ### Client
 
 ```bash
-python gui.py
+python3 gui.py
 ```
 
 ## Modify

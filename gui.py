@@ -92,6 +92,10 @@ class ChatApp:
                                 command=lambda: self.handle_action("time"))
         time_button.pack(side="left", padx=5)
 
+        # Emoji selector button
+        emoji_button = tk.Button(button_row, text="😊", command=self.open_emoji_selector)
+        emoji_button.pack(side="left", padx=5)
+
         # Chat display area
         self.chat_display = tk.Text(right_frame,
                                     state="disabled",
@@ -222,6 +226,31 @@ class ChatApp:
 
         tk.Button(dialog, text="Confirm",
                   command=confirm_selection).pack(pady=10)
+
+    def open_emoji_selector(self):
+        # Create a new modal dialog for emoji selection
+        emoji_window = tk.Toplevel(self.root)
+        emoji_window.title("Select Emoji")
+        emoji_window.geometry("400x300")
+        emoji_window.transient(self.root)  # Make it a modal dialog
+        emoji_window.grab_set()  # Prevent interaction with other windows
+
+        # List of emojis
+        emojis = [
+            "😊", "😂", "❤️", "👍", "😢", "😡", "🎉", "😎", "🤔", "🙌", "💯", "🔥",
+            "✨", "🎶", "🥳", "🤩", "😇", "😴", "🤯", "🤗", "😬", "😱", "🤤", "😜"
+        ]
+
+        # Function to insert selected emoji into the input field
+        def select_emoji(emoji):
+            self.input_field.insert(tk.END, emoji)
+            emoji_window.destroy()
+
+        # Display emojis as buttons in a grid layout
+        rows, cols = 4, 6  # Adjust rows and columns for layout
+        for i, emoji in enumerate(emojis):
+            btn = tk.Button(emoji_window, text=emoji, command=lambda e=emoji: select_emoji(e))
+            btn.grid(row=i // cols, column=i % cols, padx=5, pady=5)
 
 
 def run_async_loop():
