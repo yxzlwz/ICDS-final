@@ -5,10 +5,10 @@ from time import time
 from pathlib import Path
 
 from sonnets import data as sonnets_data
-
+GAME_ID_COUNTER = 0
 path = Path(__file__).parent.resolve()
 name2websocket = {}
-
+pending_game_invites = {}
 rooms = {}
 NUM = 0
 example_rooms = {
@@ -158,6 +158,75 @@ async def action_handler(websocket, data):
                     'history': room['history'][-100:]
                 }
             })
+    elif action == 'invite_game':
+        target_username = content.get('target_user')
+        if target_username not in name2websocket:
+            send_response(websocket, {
+                "action": 'system_message',
+                "content": f"User {target_username} is not online."
+            })
+            return
+        target_ws = name2websocket[target_username]
+        pending_game_invites[target_username] = username
+        send_response(target_ws, {
+            "action": "game_invited",
+            "content": {
+                "inviter": websocket.username
+            }
+        })
+        send_response(websocket, {
+            "action": "system_message",
+            "content": f"Game invitation sent to {target_username}."
+        })
+        return
+    elif action == 'game_response':
+        inviter = content.get('target_user')
+        response = content.get('response')
+        if inviter not in pending_game_invites or pending_game_invites[inviter] != username:
+            send_response(websocket, {
+                "action": 'system_message',
+                "content": f"No pending game invitation from {inviter}."
+            })
+            return
+        inviter_websocket = name2websocket.get(inviter)
+        if response == 'accepted':
+            global GAME_ID_COUNTER
+            current_game_id = GAME_ID_COUNTER
+            GAME_ID_COUNTER += 1
+            if inviter_websocket:
+                send_response(inviter_websocket, {
+                    "action": "game_start",
+                    "content": {'player_id': 0,
+                                'opponent': username,
+                                'game_id': current_game_id 
+                                }
+                })
+                send_response(inviter_websocket, {
+                    "action": "system_message",
+                    "content": f"{username} accepted your game invitation. Game ID: {current_game_id}"
+                })
+            send_response(websocket, {
+                "action": "game_start", 
+                "content": {'player_id': 1, 'opponent': inviter,'game_id': current_game_id} 
+            })
+            send_response(websocket, {
+                "action": "system_message",
+                "content": f"You accepted the game invitation from {inviter}. Game ID: {current_game_id}"
+            })
+            del pending_game_invites[username]
+            return 
+        elif response == 'rejected': 
+            if inviter_websocket: 
+                send_response(inviter_websocket, {
+                    "action": "system_message",
+                    "content": f"{username} rejected your game invitation."
+                })
+            send_response(websocket, {
+                "action": "system_message",
+                "content": f"You rejected the game invitation from {inviter}."
+            })
+        del pending_game_invites[username] 
+        return 
     else:
         print(f"Unknown action: {action}")
 

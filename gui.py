@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import simpledialog, messagebox
 from time import sleep, ctime
+import subprocess
 
 EH = None
 send = None
@@ -50,7 +51,11 @@ class ChatApp:
                                         text="Refresh",
                                         command=self.refresh_chat_targets)
         self.refresh_button.pack(side="right")
-
+        
+        self.game_button = tk.Button(left_frame, 
+                             text="invite game",
+                             command=self.invite_game)
+        self.game_button.pack(pady=5)
         label_frame2 = tk.Frame(left_frame)
         label_frame2.pack(fill="x", padx=5, pady=5)
         self.create_button = tk.Button(label_frame2,
@@ -154,7 +159,39 @@ class ChatApp:
     def refresh_chat_targets(self):
         self.room_listbox.delete(0, tk.END)
         send('my_room_list')
-
+    
+    def invite_game(self):
+        if not self.chat_target:
+            messagebox.showerror("Error", "Please select a chat room/user to invite.")
+        room_info = None
+        for item in self.room_listbox.get(0, tk.END):
+            if item.startswith(f"[{self.chat_target}]"):
+                room_info = item
+                break
+        if not room_info:
+            messagebox.showerror("Error", "Selected chat room/user not found.")
+            return
+        users_str = room_info.split('] ')[1]
+        users = [u.strip() for u in users_str.split(',')]
+        target_user = next((u for u in users if u != self.username), None)
+        if not target_user:
+            messagebox.showerror("Error", "Only two-person chats can invite games.")
+            return
+        send('invite_game', {'target_user': target_user})
+        messagebox.showinfo("Game Invite", f"Sent game invitation to {target_user}...")
+    def start_game_client(self, content_dict):
+        player_id = content_dict.get('player_id')
+        game_id = content_dict.get('game_id')
+        game_client_path = './gameclient.py'
+        if player_id is None or game_id is None:
+            messagebox.showerror("Error", "Missing player_id or game_id from server content.")
+            return
+        try:
+            subprocess.Popen(['python3', game_client_path, str(player_id), str(game_id)])
+            messagebox.showinfo("Game Started", f"Game started for player {player_id}.")
+        except Exception as e:
+            messagebox.showerror("Error", f"Failed to start game client: {e}")
+        
     def event_handler(self, action, content):
         if action == 'system':
             self.display_message("SYSTEM", content)
@@ -191,7 +228,18 @@ class ChatApp:
             if self.chat_target != content['room_id']:
                 return
             self.display_message(content['user'], content['message'])
-
+        elif action == 'game_invited':
+            inviter = content.get('inviter')
+            accept = messagebox.askyesno(f"Game Invitation",
+                                         f"You have been invited to a game by {inviter}. Do you want to join?")
+            if accept:
+                send('game_response', {'target_user': inviter, 'response': 'accepted'})
+            else:
+                send('game_response', {'target_user': inviter, 'response': 'declined'})
+        elif action == 'game_start':
+            self.start_game_client(content)
+        elif action == "system_message":
+            self.display_message("SYSTEM", content)
     def handle_action(self, action):
         if action == "sonnet":
             id = simpledialog.askinteger("Sonnet",
