@@ -247,7 +247,7 @@ async def handle_connection(websocket):
 
 async def periodic_save():
     while True:
-        save()
+        await asyncio.to_thread(save)
         await asyncio.sleep(5)
 
 

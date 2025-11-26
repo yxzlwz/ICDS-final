@@ -65,6 +65,8 @@ async def communicate(eh):
     EVENT_HANDLER = eh
     EVENT_LOOP = asyncio.get_running_loop() 
     uri = "ws://localhost:8766"
+    ping_interval=None
+    ping_timeout=None
     async with websockets.connect(uri) as websocket:
         print("Connected to the server")
         WEBSOCKET = websocket
