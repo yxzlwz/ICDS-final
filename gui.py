@@ -3,6 +3,9 @@ from tkinter import simpledialog, messagebox
 from time import sleep, ctime
 import subprocess
 
+# Import ChatBotClient for AI chatbot functionality
+from chat_bot_client import ChatBotClient
+
 EH = None
 send = None
 
@@ -13,6 +16,9 @@ class ChatApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Chat Application")
+        # Initialize chatbot variables
+        self.chat_bot = None
+        self.bot_personality = "friendly and helpful"  # Default personality
 
     def login(self):
         self.username = None
@@ -96,6 +102,17 @@ class ChatApp:
                                 command=lambda: self.handle_action("time"))
         time_button.pack(side="left", padx=5)
 
+        # Add chatbot buttons
+        bot_init_button = tk.Button(button_row,
+                                  text="Init Bot",
+                                  command=lambda: self.handle_action("init_bot"))
+        bot_init_button.pack(side="left", padx=5)
+        
+        personality_button = tk.Button(button_row,
+                                     text="Set Bot Personality", 
+                                     command=lambda: self.handle_action("set_personality"))
+        personality_button.pack(side="left", padx=5)
+
         # Emoji selector button
         emoji_button = tk.Button(button_row,
                                  text="😊",
@@ -130,17 +147,58 @@ class ChatApp:
         send('my_room_list', sync=False)
 
     def send_message(self, event=None):
+        """
+        Handle message sending, including bot commands.
+        Messages starting with @bot are processed by the chatbot.
+        """
         message = self.input_field.get()
-        if message.strip():
-            send('send_message', {
-                'room_id': self.chat_target,
-                'message': message
-            })
+        if not message.strip():
+            return
+            
+        # Check if message is for the bot (starts with @bot)
+        if message.strip().lower().startswith('@bot'):
+            bot_message = message[4:].strip()  # Remove @bot prefix
+            if bot_message:
+                # 首先显示用户的问题
+                self.display_message("You (to Bot)", bot_message)
+                
+                # 然后获取并显示机器人的回答
+                response = self.send_message_to_bot(bot_message)
+                if response:
+                    self.display_message("ChatBot", response)
+                    # Also send to current chat room so others can see
+                    if self.chat_target:
+                        send('send_message', {
+                            'room_id': self.chat_target,
+                            'message': f"@Bot: {response}"
+                        })
+        else:
+            # Normal message sending
+            if self.chat_target and message.strip():
+                send('send_message', {
+                    'room_id': self.chat_target,
+                    'message': message
+                })
+                
         self.input_field.delete(0, tk.END)
 
     def display_message(self, sender, message):
+        """Display message in chat area with sender identification"""
         self.chat_display.config(state="normal")
-        self.chat_display.insert(tk.END, f"[{sender}]\n{message}\n\n")
+        
+        # 为不同的发送者使用不同的格式
+        if sender == "You (to Bot)":
+            # 用户给机器人的问题用特殊格式显示
+            self.chat_display.insert(tk.END, f"➤ You asked Bot:\n", "user_question")
+            self.chat_display.insert(tk.END, f"{message}\n\n", "user_question_text")
+        elif sender == "ChatBot":
+            # 机器人的回答用特殊格式显示
+            self.chat_display.insert(tk.END, f"🤖 Bot replied:\n", "bot_response")
+            self.chat_display.insert(tk.END, f"{message}\n\n", "bot_response_text")
+        else:
+            # 普通消息保持原有格式
+            self.chat_display.insert(tk.END, f"[{sender}]\n{message}\n\n")
+        
         self.chat_display.config(state="disabled")
         self.chat_display.see(tk.END)
 
@@ -153,6 +211,13 @@ class ChatApp:
         self.chat_target = room_id
         self.chat_display.config(state="normal")
         self.chat_display.delete(1.0, tk.END)
+        
+        # 配置文本样式
+        self.chat_display.tag_configure("user_question", foreground="blue", font=("Arial", 10, "bold"))
+        self.chat_display.tag_configure("user_question_text", foreground="darkblue")
+        self.chat_display.tag_configure("bot_response", foreground="green", font=("Arial", 10, "bold"))
+        self.chat_display.tag_configure("bot_response_text", foreground="darkgreen")
+        
         self.chat_display.config(state="disabled")
         send('history', room_id, sync=sync)
 
@@ -179,6 +244,7 @@ class ChatApp:
             return
         send('invite_game', {'target_user': target_user})
         messagebox.showinfo("Game Invite", f"Sent game invitation to {target_user}...")
+    
     def start_game_client(self, content_dict):
         player_id = content_dict.get('player_id')
         game_id = content_dict.get('game_id')
@@ -191,8 +257,12 @@ class ChatApp:
             messagebox.showinfo("Game Started", f"Game started for player {player_id}.")
         except Exception as e:
             messagebox.showerror("Error", f"Failed to start game client: {e}")
-        
+    
     def event_handler(self, action, content):
+        """
+        Handle incoming events from the server.
+        Extended to handle bot-related actions.
+        """
         if action == 'system':
             self.display_message("SYSTEM", content)
         elif action == 'login':
@@ -222,6 +292,12 @@ class ChatApp:
             if self.chat_target != content['room_id']:
                 return
             self.chat_display.delete(1.0, tk.END)
+            # 配置文本样式
+            self.chat_display.tag_configure("user_question", foreground="blue", font=("Arial", 10, "bold"))
+            self.chat_display.tag_configure("user_question_text", foreground="darkblue")
+            self.chat_display.tag_configure("bot_response", foreground="green", font=("Arial", 10, "bold"))
+            self.chat_display.tag_configure("bot_response_text", foreground="darkgreen")
+            
             for msg in content['history']:
                 self.display_message(msg['user'], msg['message'])
         elif action == 'new_message':
@@ -240,7 +316,16 @@ class ChatApp:
             self.start_game_client(content)
         elif action == "system_message":
             self.display_message("SYSTEM", content)
+        # Add bot-related action handlers
+        elif action == 'bot_response':
+            self.display_message("ChatBot", content)
+        elif action == 'bot_personality_set':
+            messagebox.showinfo("ChatBot", f"Bot personality set to: {content}")
+
     def handle_action(self, action):
+        """
+        Handle button actions, extended for bot functionality.
+        """
         if action == "sonnet":
             id = simpledialog.askinteger("Sonnet",
                                          "Enter sonnet ID:",
@@ -248,6 +333,73 @@ class ChatApp:
             send("sonnet", id)
         elif action == "time":
             self.display_message("SYSTEM", f"Current time: {ctime()}")
+        # Add bot-related actions
+        elif action == "init_bot":
+            self.initialize_chat_bot()
+        elif action == "set_personality":
+            self.set_bot_personality()
+
+    def initialize_chat_bot(self):
+        """
+        Initialize the chatbot client with Ollama backend.
+        """
+        try:
+            self.chat_bot = ChatBotClient(
+                name="Assistant", 
+                model="phi3:mini",  # Changed to phi3:mini model
+                host='http://localhost:11434'
+            )
+            messagebox.showinfo("ChatBot", "ChatBot initialized successfully!")
+            
+            # Set default personality
+            if self.bot_personality:
+                system_msg = f"You are a helpful AI assistant. Your personality is: {self.bot_personality}. Keep responses concise and engaging."
+                self.chat_bot.messages = [{"role": "system", "content": system_msg}]
+                
+        except Exception as e:
+            messagebox.showerror("ChatBot Error", f"Failed to initialize chatbot: {e}")
+
+    def set_bot_personality(self):
+        """
+        Set the chatbot's personality through user input.
+        """
+        if not self.chat_bot:
+            messagebox.showerror("Error", "Please initialize the bot first!")
+            return
+            
+        personality = simpledialog.askstring(
+            "Bot Personality", 
+            "Describe the bot's personality (e.g., 'friendly and humorous', 'professional and concise'):",
+            initialvalue=self.bot_personality
+        )
+        
+        if personality:
+            self.bot_personality = personality
+            # Update system message with new personality
+            system_msg = f"You are a helpful AI assistant. Your personality is: {self.bot_personality}. Keep responses concise and engaging."
+            self.chat_bot.messages = [{"role": "system", "content": system_msg}]
+            send('bot_personality_set', personality, sync=False)
+
+    def send_message_to_bot(self, message):
+        """
+        Send message to chatbot and get response.
+        
+        Args:
+            message (str): Message to send to the bot
+            
+        Returns:
+            str: Bot's response or None if error
+        """
+        if not self.chat_bot:
+            messagebox.showerror("Error", "ChatBot not initialized!")
+            return None
+            
+        try:
+            response = self.chat_bot.chat(message)
+            return response
+        except Exception as e:
+            messagebox.showerror("ChatBot Error", f"Failed to get bot response: {e}")
+            return None
 
     def open_create_room_dialog(self):
         send('user_list')
