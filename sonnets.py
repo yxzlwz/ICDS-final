@@ -22,9 +22,9 @@ II.
 When forty winters shall besiege thy brow,
  And dig deep trenches in thy beauty's field,
  Thy youth's proud livery so gazed on now,
- Will be a totter'd weed of small worth held: 
+ Will be a totter'd weed of small worth held:
  Then being asked, where all thy beauty lies,
- Where all the treasure of thy lusty days; 
+ Where all the treasure of thy lusty days;
  To say, within thine own deep sunken eyes,
  Were an all-eating shame, and thriftless praise.
  How much more praise deserv'd thy beauty's use,
@@ -45,7 +45,7 @@ Look in thy glass and tell the face thou viewest
  For where is she so fair whose uneared womb
  Disdains the tillage of thy husbandry?
  Or who is he so fond will be the tomb
- Of his self-love, to stop posterity? 
+ Of his self-love, to stop posterity?
  Thou art thy mother's glass and she in thee
  Calls back the lovely April of her prime;
  So thou through windows of thine age shalt see,
@@ -117,7 +117,7 @@ VII.
 Lo! in the orient when the gracious light
  Lifts up his burning head, each under eye
  Doth homage to his new-appearing sight,
- Serving with looks his sacred majesty; 
+ Serving with looks his sacred majesty;
  And having climbed the steep-up heavenly hill,
  Resembling strong youth in his middle age,
  Yet mortal looks adore his beauty still,
@@ -140,7 +140,7 @@ Music to hear, why hear'st thou music sadly?
  If the true concord of well-tuned sounds,
  By unions married, do offend thine ear,
  They do but sweetly chide thee, who confounds
- In singleness the parts that thou shouldst bear. 
+ In singleness the parts that thou shouldst bear.
  Mark how one string, sweet husband to another,
  Strikes each in each by mutual ordering;
  Resembling sire and child and happy mother,
@@ -212,7 +212,7 @@ XII.
 When I do count the clock that tells the time,
  And see the brave day sunk in hideous night;
  When I behold the violet past prime,
- And sable curls, all silvered o'er with white; 
+ And sable curls, all silvered o'er with white;
  When lofty trees I see barren of leaves,
  Which erst from heat did canopy the herd,
  And summer's green all girded up in sheaves,
@@ -222,7 +222,7 @@ When I do count the clock that tells the time,
  Since sweets and beauties do themselves forsake
  And die as fast as they see others grow;
    And nothing 'gainst Time's scythe can make defence
-   Save breed, to brave him when he takes thee hence. 
+   Save breed, to brave him when he takes thee hence.
 
 
 
@@ -235,7 +235,7 @@ O! that you were your self; but, love, you are
  So should that beauty which you hold in lease
  Find no determination; then you were
  Yourself again, after yourself's decease,
- When your sweet issue your sweet form should bear. 
+ When your sweet issue your sweet form should bear.
  Who lets so fair a house fall to decay,
  Which husbandry in honour might uphold,
  Against the stormy gusts of winter's day
@@ -258,7 +258,7 @@ Not from the stars do I my judgement pluck;
  But from thine eyes my knowledge I derive,
  And, constant stars, in them I read such art
  As truth and beauty shall together thrive,
- If from thyself, to store thou wouldst convert; 
+ If from thyself, to store thou wouldst convert;
  Or else of thee this I prognosticate:
  Thy end is truth's and beauty's doom and date.
 
@@ -353,7 +353,7 @@ Devouring Time, blunt thou the lion's paws,
  O! carve not with thy hours my love's fair brow,
  Nor draw no lines there with thine antique pen;
  Him in thy course untainted do allow
- For beauty's pattern to succeeding men. 
+ For beauty's pattern to succeeding men.
  Yet, do thy worst old Time: despite thy wrong,
  My love shall in my verse ever live young.
 
@@ -402,7 +402,7 @@ XXII.
 My glass shall not persuade me I am old,
  So long as youth and thou are of one date;
  But when in thee time's furrows I behold,
- Then look I death my days should expiate. 
+ Then look I death my days should expiate.
  For all that beauty that doth cover thee,
  Is but the seemly raiment of my heart,
  Which in thy breast doth live, as thine in me:
@@ -448,7 +448,7 @@ Mine eye hath played the painter and hath steeled,
  Now see what good turns eyes for eyes have done:
  Mine eyes have drawn thy shape, and thine for me
  Are windows to my breast, where-through the sun
- Delights to peep, to gaze therein on thee; 
+ Delights to peep, to gaze therein on thee;
  Yet eyes this cunning want to grace their art,
  They draw but what they see, know not the heart.
 
@@ -497,7 +497,7 @@ XXVII.
 Weary with toil, I haste me to my bed,
  The dear repose for limbs with travel tired;
  But then begins a journey in my head
- To work my mind, when body's work's expired: 
+ To work my mind, when body's work's expired:
  For then my thoughts--from far where I abide--
  Intend a zealous pilgrimage to thee,
  And keep my drooping eyelids open wide,
@@ -520,7 +520,7 @@ How can I then return in happy plight,
  And each, though enemies to either's reign,
  Do in consent shake hands to torture me,
  The one by toil, the other to complain
- How far I toil, still farther off from thee. 
+ How far I toil, still farther off from thee.
  I tell the day, to please him thou art bright,
  And dost him grace when clouds do blot the heaven:
  So flatter I the swart-complexion'd night,
@@ -615,7 +615,7 @@ Full many a glorious morning have I seen
  Anon permit the basest clouds to ride
  With ugly rack on his celestial face,
  And from the forlorn world his visage hide,
- Stealing unseen to west with this disgrace: 
+ Stealing unseen to west with this disgrace:
  Even so my sun one early morn did shine,
  With all triumphant splendour on my brow;
  But out, alack, he was but one hour mine,
@@ -638,7 +638,7 @@ Why didst thou promise such a beauteous day,
  Nor can thy shame give physic to my grief;
  Though thou repent, yet I have still the loss:
  The offender's sorrow lends but weak relief
- To him that bears the strong offence's cross. 
+ To him that bears the strong offence's cross.
  Ah! but those tears are pearl which thy love sheds,
  And they are rich and ransom all ill deeds.
 
@@ -687,7 +687,7 @@ XXXVII.
 As a decrepit father takes delight
  To see his active child do deeds of youth,
  So I, made lame by Fortune's dearest spite,
- Take all my comfort of thy worth and truth; 
+ Take all my comfort of thy worth and truth;
  For whether beauty, birth, or wealth, or wit,
  Or any of these all, or all, or more,
  Entitled in thy parts, do crowned sit,
@@ -710,7 +710,7 @@ How can my muse want subject to invent,
  O! give thy self the thanks, if aught in me
  Worthy perusal stand against thy sight;
  For who's so dumb that cannot write to thee,
- When thou thy self dost give invention light? 
+ When thou thy self dost give invention light?
  Be thou the tenth Muse, ten times more in worth
  Than those old nine which rhymers invocate;
  And he that calls on thee, let him bring forth
@@ -733,7 +733,7 @@ O! how thy worth with manners may I sing,
  O absence! what a torment wouldst thou prove,
  Were it not thy sour leisure gave sweet leave,
  To entertain the time with thoughts of love,
- Which time and thoughts so sweetly doth deceive, 
+ Which time and thoughts so sweetly doth deceive,
  And that thou teachest how to make one twain,
  By praising him here who doth hence remain.
 
@@ -782,7 +782,7 @@ XLII.
 That thou hast her it is not all my grief,
  And yet it may be said I loved her dearly;
  That she hath thee is of my wailing chief,
- A loss in love that touches me more nearly. 
+ A loss in love that touches me more nearly.
  Loving offenders thus I will excuse ye:
  Thou dost love her, because thou know'st I love her;
  And for my sake even so doth she abuse me,
@@ -805,7 +805,7 @@ When most I wink, then do mine eyes best see,
  Then thou, whose shadow shadows doth make bright,
  How would thy shadow's form form happy show
  To the clear day with thy much clearer light,
- When to unseeing eyes thy shade shines so! 
+ When to unseeing eyes thy shade shines so!
  How would, I say, mine eyes be blessed made
  By looking on thee in the living day,
  When in dead night thy fair imperfect shade
@@ -819,16 +819,16 @@ XLIV.
 
 If the dull substance of my flesh were thought,
  Injurious distance should not stop my way;
- For then despite of space I would be brought, 
- From limits far remote, where thou dost stay. 
- No matter then although my foot did stand 
- Upon the farthest earth removed from thee; 
- For nimble thought can jump both sea and land 
- As soon as think the place where he would be. 
- But ah! thought kills me that I am not thought, 
- To leap large lengths of miles when thou art gone, 
+ For then despite of space I would be brought,
+ From limits far remote, where thou dost stay.
+ No matter then although my foot did stand
+ Upon the farthest earth removed from thee;
+ For nimble thought can jump both sea and land
+ As soon as think the place where he would be.
+ But ah! thought kills me that I am not thought,
+ To leap large lengths of miles when thou art gone,
  But that, so much of earth and water wrought,
- I must attend time's leisure with my moan, 
+ I must attend time's leisure with my moan,
  Receiving nought by elements so slow
  But heavy tears, badges of either's woe.
 
@@ -836,19 +836,19 @@ If the dull substance of my flesh were thought,
 
 XLV.
 
-The other two, slight air and purging fire, 
- Are both with thee, wherever I abide; 
- The first my thought, the other my desire, 
- These present-absent with swift motion slide. 
- For when these quicker elements are gone 
- In tender embassy of love to thee, 
- My life, being made of four, with two alone 
- Sinks down to death, oppressed with melancholy; 
- Until life's composition be recured 
- By those swift messengers return'd from thee, 
- Who even but now come back again, assured 
- Of thy fair health, recounting it to me: 
- This told, I joy; but then no longer glad, 
+The other two, slight air and purging fire,
+ Are both with thee, wherever I abide;
+ The first my thought, the other my desire,
+ These present-absent with swift motion slide.
+ For when these quicker elements are gone
+ In tender embassy of love to thee,
+ My life, being made of four, with two alone
+ Sinks down to death, oppressed with melancholy;
+ Until life's composition be recured
+ By those swift messengers return'd from thee,
+ Who even but now come back again, assured
+ Of thy fair health, recounting it to me:
+ This told, I joy; but then no longer glad,
  I send them back again and straight grow sad.
 
 
@@ -900,7 +900,7 @@ How careful was I when I took my way,
  But thou, to whom my jewels trifles are,
  Most worthy comfort, now my greatest grief,
  Thou best of dearest, and mine only care,
- Art left the prey of every vulgar thief. 
+ Art left the prey of every vulgar thief.
  Thee have I not locked up in any chest,
  Save where thou art not, though I feel thou art,
  Within the gentle closure of my breast,
@@ -923,7 +923,7 @@ Against that time, if ever that time come,
  Against that time do I ensconce me here,
  Within the knowledge of mine own desert,
  And this my hand, against my self uprear,
- To guard the lawful reasons on thy part: 
+ To guard the lawful reasons on thy part:
  To leave poor me thou hast the strength of laws,
  Since why to love I can allege no cause.
 
@@ -972,7 +972,7 @@ LII.
 So am I as the rich, whose blessed key,
  Can bring him to his sweet up-locked treasure,
  The which he will not every hour survey,
- For blunting the fine point of seldom pleasure. 
+ For blunting the fine point of seldom pleasure.
  Therefore are feasts so solemn and so rare,
  Since, seldom coming in the long year set,
  Like stones of worth they thinly placed are,
@@ -995,7 +995,7 @@ What is your substance, whereof are you made,
  Describe Adonis, and the counterfeit
  Is poorly imitated after you;
  On Helen's cheek all art of beauty set,
- And you in Grecian tires are painted new: 
+ And you in Grecian tires are painted new:
  Speak of the spring, and foison of the year,
  The one doth shadow of your beauty show,
  The other as your bounty doth appear;
@@ -1018,7 +1018,7 @@ O! how much more doth beauty beauteous seem
  But, for their virtue only is their show,
  They live unwoo'd, and unrespected fade;
  Die to themselves. Sweet roses do not so;
- Of their sweet deaths are sweetest odours made: 
+ Of their sweet deaths are sweetest odours made:
  And so of you, beauteous and lovely youth,
  When that shall vade, my verse distills your truth.
 
@@ -1067,7 +1067,7 @@ LVII.
 Being your slave what should I do but tend
  Upon the hours, and times of your desire?
  I have no precious time at all to spend;
- Nor services to do, till you require. 
+ Nor services to do, till you require.
  Nor dare I chide the world without end hour,
  Whilst I, my sovereign, watch the clock for you,
  Nor think the bitterness of absence sour,
@@ -1090,7 +1090,7 @@ That god forbid, that made me first your slave,
  O! let me suffer, being at your beck,
  The imprison'd absence of your liberty;
  And patience, tame to sufferance, bide each check,
- Without accusing you of injury. 
+ Without accusing you of injury.
  Be where you list, your charter is so strong
  That you yourself may privilege your time
  To what you will; to you it doth belong
@@ -1113,7 +1113,7 @@ If there be nothing new, but that which is
  That I might see what the old world could say
  To this composed wonder of your frame;
  Whether we are mended, or where better they,
- Or whether revolution be the same. 
+ Or whether revolution be the same.
  Oh sure I am the wits of former days,
  To subjects worse have given admiring praise.
 
@@ -1185,7 +1185,7 @@ Against my love shall be as I am now,
  Hath travelled on to age's steepy night;
  And all those beauties whereof now he's king
  Are vanishing, or vanished out of sight,
- Stealing away the treasure of his spring; 
+ Stealing away the treasure of his spring;
  For such a time do I now fortify
  Against confounding age's cruel knife,
  That he shall never cut from memory
@@ -1207,8 +1207,8 @@ When I have seen by Time's fell hand defaced
  Increasing store with loss, and loss with store;
  When I have seen such interchange of state,
  Or state itself confounded to decay;
- Ruin hath taught me thus to ruminate 
- That Time will come and take my love away. 
+ Ruin hath taught me thus to ruminate
+ That Time will come and take my love away.
  This thought is as a death which cannot choose
  But weep to have that which it fears to lose.
 
@@ -1257,7 +1257,7 @@ LXVII.
 Ah! wherefore with infection should he live,
  And with his presence grace impiety,
  That sin by him advantage should achieve,
- And lace itself with his society? 
+ And lace itself with his society?
  Why should false painting imitate his cheek,
  And steal dead seeming of his living hue?
  Why should poor beauty indirectly seek
@@ -1303,7 +1303,7 @@ Those parts of thee that the world's eye doth view
  They look into the beauty of thy mind,
  And that in guess they measure by thy deeds;
  Then, churls, their thoughts, although their eyes were kind,
- To thy fair flower add the rank smell of weeds: 
+ To thy fair flower add the rank smell of weeds:
  But why thy odour matcheth not thy show,
  The soil is this, that thou dost common grow.
 
@@ -1375,7 +1375,7 @@ That time of year thou mayst in me behold
  In me thou see'st the twilight of such day
  As after sunset fadeth in the west;
  Which by and by black night doth take away,
- Death's second self, that seals up all in rest. 
+ Death's second self, that seals up all in rest.
  In me thou see'st the glowing of such fire,
  That on the ashes of his youth doth lie,
  As the death-bed, whereon it must expire,
@@ -1447,7 +1447,7 @@ LXXVII.
 Thy glass will show thee how thy beauties wear,
  Thy dial how thy precious minutes waste;
  The vacant leaves thy mind's imprint will bear,
- And of this book, this learning mayst thou taste. 
+ And of this book, this learning mayst thou taste.
  The wrinkles which thy glass will truly show
  Of mouthed graves will give thee memory;
  Thou by thy dial's shady stealth mayst know
@@ -1827,7 +1827,7 @@ XCVII.
 How like a winter hath my absence been
  From thee, the pleasure of the fleeting year!
  What freezings have I felt, what dark days seen!
- What old December's bareness everywhere! 
+ What old December's bareness everywhere!
  And yet this time removed was summer's time;
  The teeming autumn, big with rich increase,
  Bearing the wanton burden of the prime,
@@ -1873,9 +1873,9 @@ The forward violet thus did I chide:
  One blushing shame, another white despair;
  A third, nor red nor white, had stol'n of both,
  And to his robbery had annexed thy breath;
- But, for his theft, in pride of all his growth 
+ But, for his theft, in pride of all his growth
  A vengeful canker eat him up to death.
- More flowers I noted, yet I none could see, 
+ More flowers I noted, yet I none could see,
  But sweet, or colour it had stol'n from thee.
 
 
@@ -1945,7 +1945,7 @@ Alack! what poverty my Muse brings forth,
  Than when it hath my added praise beside!
  O! blame me not, if I no more can write!
  Look in your glass, and there appears a face
- That over-goes my blunt invention quite, 
+ That over-goes my blunt invention quite,
  Dulling my lines, and doing me disgrace.
  Were it not sinful then, striving to mend,
  To mar the subject that before was well?

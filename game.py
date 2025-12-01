@@ -9,20 +9,21 @@ class Game:
       - match_winner() 返回比赛胜者（0 或 1），若未结束则返回 None
       - resetRound() 清理回合状态，resetMatch() 重置整场比分
     """
+
     def __init__(self, id):
         self.p1Went = False
         self.p2Went = False
         self.ready = False
         self.id = id
         self.moves = [None, None]
-        self.wins = [0, 0]   # 比赛总胜场数
+        self.wins = [0, 0]  # 比赛总胜场数
         self.ties = 0
         self.rounds_played = 0
         self._last_round_winner = None  # -1/0/1
         self.match_over = False
         # <-- 添加重赛协商状态
         self.rematch_votes = [None, None]  # [player0的选择, player1的选择]，None/True/False
-    
+
     def get_player_move(self, p):
         return self.moves[p]
 
@@ -61,9 +62,11 @@ class Game:
         if p1 == p2:
             return -1
 
-        if (p1 == "ROCK" and p2 == "SCISSORS") or \
-           (p1 == "SCISSORS" and p2 == "PAPER") or \
-           (p1 == "PAPER" and p2 == "ROCK"):
+        if (
+            (p1 == 'ROCK' and p2 == 'SCISSORS')
+            or (p1 == 'SCISSORS' and p2 == 'PAPER')
+            or (p1 == 'PAPER' and p2 == 'ROCK')
+        ):
             return 0
 
         return 1
@@ -76,7 +79,9 @@ class Game:
         """
         if not self.bothWent():
             return -1
-        return self._last_round_winner if self._last_round_winner is not None else self._compute_round_winner()
+        return (
+            self._last_round_winner if self._last_round_winner is not None else self._compute_round_winner()
+        )
 
     def is_match_over(self):
         """三局两胜：任意一方达到 2 胜则比赛结束。"""

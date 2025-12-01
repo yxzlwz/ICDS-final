@@ -4,14 +4,14 @@ import pickle
 class Network:
     def __init__(self):
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.server = "10.209.93.40"  
+        self.server = "127.0.0.1"
         self.port = 5555
         self.p = self.connect()
 
     def connect(self):
         try:
             self.client.connect((self.server, self.port))
-            return self.client.recv(2048).decode() 
+            return self.client.recv(2048).decode()
         except socket.error as e:
             print(f"Connection error: {e}")
             return None
