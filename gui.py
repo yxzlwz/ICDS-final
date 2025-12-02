@@ -78,7 +78,12 @@ class ChatApp:
 
         time_button = tk.Button(button_row, text='Time', command=lambda: self.handle_action('time'))
         time_button.pack(side='left', padx=5)
-
+        dice_button = tk.Button(button_row,
+                                
+                                text="🎲",
+                                command=lambda: self.handle_action("dice"))
+        dice_button.pack(side="left", padx=5)    
+        
         personality_button = tk.Button(
             button_row, text='Set Bot Personality', command=lambda: self.handle_action('set_personality')
         )
@@ -250,16 +255,20 @@ class ChatApp:
             self.display_message('SYSTEM', content)
         elif action == 'bot_personality_set':
             messagebox.showinfo('ChatBot', f'Bot personality set to: {content}')
-
+            
     def handle_action(self, action):
         if action == 'sonnet':
             id = simpledialog.askinteger('Sonnet', 'Enter sonnet ID:', minvalue=1)
             send('sonnet', id)
         elif action == 'time':
             self.display_message('SYSTEM', f'Current time: {ctime()}')
-        # Add bot-related actions
         elif action == 'set_personality':
             self.set_bot_personality()
+        elif action == 'dice':
+            if not self.chat_target:
+                messagebox.showerror("Error", "No chat target selected!")
+                return
+            send("roll_dice", self.chat_target)
 
     def set_bot_personality(self):
         self.bot_personality = simpledialog.askstring(

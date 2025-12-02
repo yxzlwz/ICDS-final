@@ -280,9 +280,44 @@ async def action_handler(websocket, data):
                 websocket,
                 {'action': 'system_message', 'content': f'You rejected the game invitation from {inviter}.'},
             )
+    elif action == 'roll_dice':
+        room_id = content
+        if room_id not in rooms:
+            send_response(websocket, {
+                "action": 'system',
+                "content": "Room does not exist."
+            })
+            return
+        room = rooms[room_id]
+        if username not in room['members']:
+            send_response(
+                websocket, {
+                    "action": 'system',
+                    "content": "You are not a member of this room."
+                })
+            return
+        import random
+        dice_emojis = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"]
+        idx = random.randint(0, 5)
+        message = f"{username} rolled a dice and got {dice_emojis[idx]}"
+        msg_data = {
+            'user': username,
+            'message': message,
+            'time': round(time(), 3)
+        }
+        room['history'].append(msg_data)
+        for member in room['members']:
+            if member in name2websocket:
+                send_response(
+                    name2websocket[member], {
+                        "action": 'new_message',
+                        "content": {
+                            'room_id': room_id,
+                            **msg_data
+                        }
+                    })     
     else:
         print(f'Unknown action: {action}')
-
 
 async def handle_connection(websocket):
     print('Client connected')
