@@ -5,7 +5,7 @@ from time import time
 from pathlib import Path
 import re
 from collections import Counter
-from deepseek import get_response
+from chatbot import get_response
 from sonnets import data as sonnets_data
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
@@ -55,7 +55,7 @@ async def bot_response(websocket, history, room_id, username):
     response = get_response(
         [
             {
-                'role': 'user',
+                'role': 'system',
                 'content': 'In your answer, no markdown formatting is needed. No reasoning.'
                 "Answer as short as possible. Don't quote chat history."
                 f'Reply in {name2botpersonality[username]} tone.'
@@ -217,13 +217,13 @@ async def action_handler(websocket, data):
             )
             return
         target_ws = name2websocket[target_username]
-        pending_game_invites[target_username] = username
-        send_response(target_ws, {'action': 'game_invited', 'content': {'inviter': websocket.username}})
+        pending_game_invites[username] = target_username
+        send_response(target_ws, {'action': 'game_invited', 'content': {'inviter': username}})
         send_response(
             websocket, {'action': 'system_message', 'content': f'Game invitation sent to {target_username}.'}
         )
-        return
     elif action == 'game_response':
+        print(111, pending_game_invites)
         inviter = content.get('target_user')
         response = content.get('response')
         if inviter not in pending_game_invites or pending_game_invites[inviter] != username:
@@ -232,26 +232,31 @@ async def action_handler(websocket, data):
                 {'action': 'system_message', 'content': f'No pending game invitation from {inviter}.'},
             )
             return
-        inviter_websocket = name2websocket.get(inviter)
+        inviter_websocket = name2websocket.pop(inviter)
+        if not inviter_websocket:
+            send_response(
+                websocket,
+                {'action': 'system_message', 'content': f'User {inviter} is no longer online.'},
+            )
+            return
         if response == 'accepted':
             global GAME_ID_COUNTER
             current_game_id = GAME_ID_COUNTER
             GAME_ID_COUNTER += 1
-            if inviter_websocket:
-                send_response(
-                    inviter_websocket,
-                    {
-                        'action': 'game_start',
-                        'content': {'player_id': 0, 'opponent': username, 'game_id': current_game_id},
-                    },
-                )
-                send_response(
-                    inviter_websocket,
-                    {
-                        'action': 'system_message',
-                        'content': f'{username} accepted your game invitation. Game ID: {current_game_id}',
-                    },
-                )
+            send_response(
+                inviter_websocket,
+                {
+                    'action': 'game_start',
+                    'content': {'player_id': 0, 'opponent': username, 'game_id': current_game_id},
+                },
+            )
+            send_response(
+                inviter_websocket,
+                {
+                    'action': 'system_message',
+                    'content': f'{username} accepted your game invitation. Game ID: {current_game_id}',
+                },
+            )
             send_response(
                 websocket,
                 {
@@ -266,20 +271,15 @@ async def action_handler(websocket, data):
                     'content': f'You accepted the game invitation from {inviter}. Game ID: {current_game_id}',
                 },
             )
-            del pending_game_invites[username]
-            return
         elif response == 'rejected':
-            if inviter_websocket:
-                send_response(
-                    inviter_websocket,
-                    {'action': 'system_message', 'content': f'{username} rejected your game invitation.'},
-                )
+            send_response(
+                inviter_websocket,
+                {'action': 'system_message', 'content': f'{username} rejected your game invitation.'},
+            )
             send_response(
                 websocket,
                 {'action': 'system_message', 'content': f'You rejected the game invitation from {inviter}.'},
             )
-        del pending_game_invites[username]
-        return
     else:
         print(f'Unknown action: {action}')
 
@@ -318,4 +318,9 @@ if __name__ == '__main__':
     for i in rooms.keys():
         if int(i) > NUM:
             NUM = int(i)
+    import threading
+    from gameserver import main as game_main
+
+    thread = threading.Thread(target=game_main, daemon=True)
+    thread.start()
     asyncio.run(main())

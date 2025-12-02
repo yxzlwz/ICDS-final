@@ -9,14 +9,6 @@ from game import Game
 server = '0.0.0.0'
 port = 5555
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-try:
-    s.bind((server, port))
-except socket.error as e:
-    print(e)
-
-s.listen(2)
-print('Waiting for a connection, Server Started')
 
 games = {}  # gameId -> Game
 conns = {}  # gameId -> [conn1, conn2]
@@ -196,26 +188,40 @@ def threaded_client(conn, p, gameId):
             pass
         try:
             conn.close()
-        except:
+        except Exception:
             pass
 
 
-# 接受连接并维护 conns 列表
-while True:
-    conn, addr = s.accept()
-    print('Connected to:', addr)
-    idCount += 1
-    p = 0
-    gameId = (idCount - 1) // 2
+def main():
+    global idCount
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    try:
+        s.bind((server, port))
+    except socket.error as e:
+        print(e)
 
-    with games_lock:
-        if idCount % 2 == 1:
-            games[gameId] = Game(gameId)
-            conns[gameId] = [conn]
-            print('Creating a new game...')
-        else:
-            conns[gameId].append(conn)
-            games[gameId].ready = True
-            p = 1
+    s.listen(2)
+    print('Waiting for a connection, Server Started')
+    # 接受连接并维护 conns 列表
+    while True:
+        conn, addr = s.accept()
+        print('Connected to:', addr)
+        idCount += 1
+        p = 0
+        gameId = (idCount - 1) // 2
 
-    start_new_thread(threaded_client, (conn, p, gameId))
+        with games_lock:
+            if idCount % 2 == 1:
+                games[gameId] = Game(gameId)
+                conns[gameId] = [conn]
+                print('Creating a new game...')
+            else:
+                conns[gameId].append(conn)
+                games[gameId].ready = True
+                p = 1
+
+        start_new_thread(threaded_client, (conn, p, gameId))
+
+
+if __name__ == '__main__':
+    main()

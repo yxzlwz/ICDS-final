@@ -3,8 +3,6 @@ from tkinter import simpledialog, messagebox
 from time import ctime
 import subprocess
 
-# Import ChatBotClient for AI chatbot functionality
-
 EH = None
 send = None
 
@@ -193,21 +191,15 @@ class ChatApp:
     def start_game_client(self, content_dict):
         player_id = content_dict.get('player_id')
         game_id = content_dict.get('game_id')
-        game_client_path = './gameclient.py'
         if player_id is None or game_id is None:
             messagebox.showerror('Error', 'Missing player_id or game_id from server content.')
             return
         try:
-            subprocess.Popen(['python3', game_client_path, str(player_id), str(game_id)])
-            messagebox.showinfo('Game Started', f'Game started for player {player_id}.')
+            subprocess.Popen(['python3', './gameclient.py', str(player_id), str(game_id)])
         except Exception as e:
             messagebox.showerror('Error', f'Failed to start game client: {e}')
 
     def event_handler(self, action, content):
-        """
-        Handle incoming events from the server.
-        Extended to handle bot-related actions.
-        """
         if action == 'system':
             self.display_message('SYSTEM', content)
         elif action == 'login':
@@ -237,12 +229,6 @@ class ChatApp:
             if self.chat_target != content['room_id']:
                 return
             self.chat_display.delete(1.0, tk.END)
-            # 配置文本样式
-            self.chat_display.tag_configure('user_question', foreground='blue', font=('Arial', 10, 'bold'))
-            self.chat_display.tag_configure('user_question_text', foreground='darkblue')
-            self.chat_display.tag_configure('bot_response', foreground='green', font=('Arial', 10, 'bold'))
-            self.chat_display.tag_configure('bot_response_text', foreground='darkgreen')
-
             for msg in content['history']:
                 self.display_message(msg['user'], msg['message'], msg.get('sentiment'))
         elif action == 'new_message':
@@ -255,21 +241,17 @@ class ChatApp:
                 'Game Invitation', f'You have been invited to a game by {inviter}. Do you want to join?'
             )
             if accept:
-                send('game_response', {'target_user': inviter, 'response': 'accepted'})
+                send('game_response', {'target_user': inviter, 'response': 'accepted'}, sync=False)
             else:
-                send('game_response', {'target_user': inviter, 'response': 'declined'})
+                send('game_response', {'target_user': inviter, 'response': 'declined'}, sync=False)
         elif action == 'game_start':
             self.start_game_client(content)
         elif action == 'system_message':
             self.display_message('SYSTEM', content)
-        # Add bot-related action handlers
         elif action == 'bot_personality_set':
             messagebox.showinfo('ChatBot', f'Bot personality set to: {content}')
 
     def handle_action(self, action):
-        """
-        Handle button actions, extended for bot functionality.
-        """
         if action == 'sonnet':
             id = simpledialog.askinteger('Sonnet', 'Enter sonnet ID:', minvalue=1)
             send('sonnet', id)
