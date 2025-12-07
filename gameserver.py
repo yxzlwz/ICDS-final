@@ -6,7 +6,7 @@ import time
 import threading
 from game import Game
 
-server = '0.0.0.0'
+server = '10.209.85.74'
 port = 5555
 
 

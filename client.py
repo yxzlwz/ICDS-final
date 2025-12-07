@@ -34,7 +34,7 @@ async def receive_messages():
 async def communicate(eh):
     global WEBSOCKET, EVENT_HANDLER
     EVENT_HANDLER = eh
-    uri = 'ws://localhost:8766'
+    uri = 'ws://10.209.85.74:8766'
     async with websockets.connect(uri) as websocket:
         print('Connected to the server')
         WEBSOCKET = websocket
