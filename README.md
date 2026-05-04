@@ -1,5 +1,21 @@
 # ICDS Final Project
 
+## What We Finished
+
+- GUI
+  - Login
+  - Emoji
+  - Buttons for sonnet & time
+- Chatbot
+  - Context Awareness and Personality
+  - Participation in Group Chats
+- Online Gaming
+  - Interactive Multiplayer Gaming
+- NLP
+  - Keyword Extraction
+  - Summary
+- Sentiment Analysis
+
 ## Run
 
 ### Install Requirements
