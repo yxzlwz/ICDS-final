@@ -1,5 +1,15 @@
 # ICDS Final Project
 
+## Introduction
+
+This is the final project for the course Introduction to Computer and Data Science at New York University Shanghai.
+
+Group members:
+
+- [Danny Wang](mailto:zw5163@nyu.edu)
+- [Henry Wang](mailto:sw7110@nyu.edu)
+- Yuhang Hou
+
 ## What We Finished
 
 - GUI
